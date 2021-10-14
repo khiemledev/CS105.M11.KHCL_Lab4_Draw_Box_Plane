@@ -51,19 +51,9 @@ const animate = (scene, camera, renderer) => {
   // Animation goes here
   let box = scene.getObjectByName('my_box')
   if (box) {
-    // Rotate the box
     box.rotation.y += 0.01
     box.rotation.x += 0.01
     box.rotation.z += 0.01
-
-    // Zoom in-out effect
-    if (!box.scaleState) box.scaleState = 'UP'
-    if (box.scale.x <= 1) box.scaleState = 'UP'
-    if (box.scale.x >= 2) box.scaleState = 'DOWN'
-    let factor = box.scaleState === 'UP' ? 0.01 : -0.01
-    box.scale.x += factor
-    box.scale.y += factor
-    box.scale.z += factor
   }
 
   renderer.render(scene, camera)
