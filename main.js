@@ -3,12 +3,8 @@ import * as THREE from 'three'
 
 const init = () => {
   const scene = new THREE.Scene()
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    window.innerWidth / window.innerHeight,
-    1,
-    1000
-  )
+  const aspect = window.innerWidth / window.innerHeight
+  const camera = new THREE.PerspectiveCamera(45, aspect, 1, 1000)
 
   // Render scene to the DOM
   const renderer = new THREE.WebGLRenderer()
@@ -38,7 +34,7 @@ const createPlane = (size) => {
   const geometry = new THREE.PlaneGeometry(size, size)
   const material = new THREE.MeshBasicMaterial({
     color: 0xff0000,
-    side: THREE.DoubleSide
+    side: THREE.DoubleSide,
   })
   const mesh = new THREE.Mesh(geometry, material)
   // Rotate plane along X axis by 90 degree
@@ -58,7 +54,7 @@ const main = () => {
 
   const plane = createPlane(4)
   scene.add(plane)
-  
+
   const box = createBox(1, 1, 1)
   // Place the box on the plane
   box.position.y = box.geometry.parameters.height / 2
